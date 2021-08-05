@@ -1,3 +1,4 @@
+// debugger;
 const people = [
   { name: 'Wes', cool: true, country: 'Canada' },
   { name: 'Scott', cool: true, country: 'Merica' },
@@ -8,13 +9,18 @@ people.forEach((person, index) => {
   console.log(person.name);
 });
 
+// console.table(people);
+
 // Console Methods
 
-// Callstack
+// Callstack, Stack Trace
 
 // Grabbing Elements
 
 // Breakpoints
+/* eslint-disable */
+  // debugger
+/* eslint-enable */
 
 // Scope
 
@@ -25,11 +31,12 @@ people.forEach((person, index) => {
 // Some Setup Code
 
 function doctorize(name) {
+  // console.count('running doctorize');
   return `Dr. ${name}`;
 }
 
 function greet(name) {
-  doesntExist();
+  doesntExist(); // cause an error
   return `Hello ${name}`;
 }
 
@@ -38,8 +45,15 @@ function go() {
   console.log(name);
 }
 
+function bootstrap() {
+  console.log('Starting the app!');
+  go();
+}
+
+// bootstrap();
+
 const button = document.querySelector('.bigger');
-button.addEventListener('click', function(e) {
+button.addEventListener('click', function (e) {
   const newFontSize =
     parseFloat(getComputedStyle(e.currentTarget).fontSize) + 1;
   e.currentTarget.style.fontSize = `${newFontSize}px`;
