@@ -9,7 +9,48 @@
 </head>
 
 <body>
+  <h1>Closures</h1>
+  <p style="color: white"><strong>Closures</strong> are the ability for a child function, or an inner function, to
+    access variables from a
+    higher level scope even after the functions have been called or closed.</p>
+  <script>
+    // function outer() {
+    //   const outerVar = 'Hey, I am the outer Var!';
+    //   function inner() {
+    //     const innerVar = 'Hey, I am an inner var';
+    //     console.log(innerVar);
+    //     console.log(outerVar);
+    //   }
+    //   return inner;
+    // }
+    // const innerFn = outer();
+    // innerFn();
 
+    // function createGreeting(greeting = '') {
+    //   const myGreet = greeting.toUpperCase();
+    //   return function (name) {
+    //     return `${myGreet} ${name}`;
+    //   };
+    // }
+    // const sayHello = createGreeting('hello');
+    // const sayHey = createGreeting('hey');
+    // console.log(sayHello('fran'));
+    // console.log(sayHey('fran'));
+    // console.log(sayHey('anna'));
+
+    function createGame(gameName) {
+      let score = 0;
+      return function win() {
+        score++;
+        return `Your ${gameName} game score is ${score}`;
+      };
+    }
+    const hockeyGame = createGame('hockey');
+    // console.log(hockeyGame());
+    // console.log(hockeyGame());
+    const footballGame = createGame('football');
+    // console.log(footballGame());
+  </script>
 </body>
 
 </html>
