@@ -47,7 +47,8 @@ const myImage = document.createElement('img');
 myImage.src = 'https://source.unsplash.com/random/300x300';
 
 // set the width to 250
-myImage.width = '250';
+myImage.width = 250;
+myImage.height = 250;
 // add a class of cute
 myImage.classList.add('cute');
 // add an alt of Cute Puppy
@@ -58,7 +59,7 @@ myDiv.appendChild(myImage);
 // with HTML string, make a div, with two paragraphs inside of it
 // put this div before the unordered list from above
 const myHTML = `
-  <div>
+  <div class="my-paragraphs">
     <p>I am the first paragraph</p>
     <p>I am the second paragraph</p>
   </div>
@@ -66,7 +67,9 @@ const myHTML = `
 uList.insertAdjacentHTML('beforebegin', myHTML);
 
 // add a class to the second paragraph called warning
-const secondP = document.querySelector('div p:last-child');
+// const secondP = document.querySelector('div p:last-child');
+const myParagraphs = myDiv.querySelector('.my-paragraphs');
+const secondP = myParagraphs.children[1];
 secondP.classList.add('warning');
 // remove the first paragraph
 const firstP = document.querySelector('div p');
@@ -97,13 +100,27 @@ const cards = document.createElement('div');
 cards.classList.add('cards');
 
 // make 4 player cards using generatePlayerCard
+
+// One way
+// const cardsHTMLArray = [];
+// const card1 = generatePlayerCard('alpaca', 5, 20);
+// const card2 = generatePlayerCard('camel', 2, 30);
+// const card3 = generatePlayerCard('toto', 2, 30);
+// const card4 = generatePlayerCard('vizenzo', 2, 30);
+
+// cardsHTMLArray.push(card1, card2, card3, card4);
+// console.log(cardsHTMLArray);
+// cards.insertAdjacentHTML('beforeend', cardsHTMLArray);
+
+// Another way
 let cardsHTML = generatePlayerCard('speedy', 5, 20);
 cardsHTML += generatePlayerCard('loddy', 2, 30);
 cardsHTML += generatePlayerCard('oscar', 8, 12);
 cardsHTML += generatePlayerCard('colley', 9, 25);
 
 // append those cards to the div
-cards.insertAdjacentHTML('beforeend', cardsHTML);
+// cards.insertAdjacentHTML('beforeend', cardsHTML);
+cards.innerHTML = cardsHTML;
 console.log(cards);
 // put the div into the DOM just before the wrapper element
 myDiv.insertAdjacentElement('beforebegin', cards);
@@ -114,7 +131,8 @@ myDiv.insertAdjacentElement('beforebegin', cards);
 const deleteBtns = document.querySelectorAll('.delete');
 // make out delete function
 const deleteCard = (event) => {
-  event.currentTarget.closest('.playerCard').remove();
+  //   event.currentTarget.parentElement.remove();
+  event.currentTarget.closest('.playerCard').remove(); // closest looks at an element and move itself u the tree of DOM elements until it find something that matches the name of the argument (.playerCard)
 };
 
 // loop over them and attach a listener
