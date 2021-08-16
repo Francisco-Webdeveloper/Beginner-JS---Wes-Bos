@@ -1,20 +1,18 @@
 const cardButtons = document.querySelectorAll('.card button');
 const modalOuter = document.querySelector('.modal-outer');
 const modalInner = document.querySelector('.modal-inner');
+console.log(modalInner);
 
 const handleCardButtonClick = (event) => {
-  const button = event.currentTarget;
-  const card = button.closest('.card');
-  // grab the image src;
+  const button = event.target;
+  const card = button.closest('div');
   const imgSrc = card.querySelector('img').src;
-  const { description } = card.dataset; // const description = card.dataset.description;
+  const desc = card.dataset.description;
   const name = card.querySelector('h2').textContent;
-  // populate the modal with the new info
   modalInner.innerHTML = `
     <img src="${imgSrc.replace('200', '600')}" alt="${name}">
-    <p>${description}</p>
+    <p>${desc}</p>
   `;
-  // show the modal
   modalOuter.classList.add('open');
 };
 
