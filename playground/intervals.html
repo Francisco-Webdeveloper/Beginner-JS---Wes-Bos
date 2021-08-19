@@ -10,6 +10,50 @@
 
 <body>
 
+  <script>
+    const buzzer = () => {
+      console.log('ENNNNGGGG');
+    };
+
+    // example of Asynchronous javascript. It does not wait for a task to finish to move on to the next one.
+    // console.log('Starting');
+    // setTimeout(buzzer, 2000);
+    // console.log('Finishing');
+
+    // function that will run the code immediately without having two wait for the time passed in the interval.
+    const setImmediateInterval = (funcToRun, ms) => {
+      funcToRun();
+      return setInterval(funcToRun, ms);
+    };
+    setImmediateInterval(buzzer, 2000);
+
+    const sayHi = () => {
+      console.log('Heyyy');
+    };
+    // setImmediateInterval(sayHi, 5000);
+
+    // stop the timeouts
+    const destroy = () => {
+      document.body.innerHTML = '<p>DESTROYED</p>';
+    };
+    const bombTimer = setTimeout(destroy, 5000); // save it in a variable to stop the timer at a later stage
+
+    window.addEventListener('click', () => {
+      console.log('You clicked! You saved the world!');
+      // stop the timer from running
+      clearTimeout(bombTimer);
+    });
+
+    // stop intervals
+    const pileOfPoo = setInterval(() => {
+      console.log('💩');
+      console.log('heheheh');
+    }, 1000);
+
+    setTimeout(() => {
+      clearInterval(pileOfPoo);
+    }, 3000);
+  </script>
 </body>
 
 </html>
