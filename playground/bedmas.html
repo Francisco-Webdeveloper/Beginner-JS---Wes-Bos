@@ -33,6 +33,8 @@
       const total = billAmount + billAmount * taxRate + billAmount * tipRate;
       return total;
     }
+    const total = calculateBill(100) + calculateBill(20) - calculateBill(15);
+    console.log(total);
   </script>
 </body>
 

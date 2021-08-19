@@ -13,6 +13,69 @@
     if (10 > 2) {
       console.log('Yep');
     }
+
+    function slugify(sentence, lowercase) {
+      const slug = sentence.replace(/\s/g, '-');
+      if (lowercase) {
+        return slug.toLowerCase();
+      }
+      return slug;
+    }
+
+    const name = 'anna';
+    const name2 = 'fran';
+    if (name || name2 === 'maria') {
+      console.log('cool names!');
+    }
+
+    const name3 = 'wes';
+    const isAwesomeName = 'awesome'.includes(name3);
+    if (isAwesomeName) {
+      console.log('yes, it includes the name "Wes"');
+    }
+
+    const nameIsAwesome = (name) => {
+      if (name.includes('fran')) {
+        console.log('that name is awesome');
+      } else {
+        console.log('could be better');
+      }
+    };
+
+    console.clear();
+
+    // ternary
+    const count = 10;
+    // if (count === 1) {
+    //   word = 'item';
+    // } else {
+    //   word = 'items';
+    // }
+    // const word = count === 1 ? 'item' : 'items';
+    const sentence = `You have ${count} item${count === 1 ? '' : 's'} in your cart`;
+    console.log(sentence);
+
+    const showAdminBar = () => {
+      console.log('showing admin bar');
+    };
+    const isAdmin = true;
+    // isAdmin ? showAdminBar() : null;
+    isAdmin && showAdminBar();
+
+    if (isAdmin) {
+      showAdminBar();
+    }
+    // if (isAdmin) showAdminBar();
+
+    // AND AND TRICK
+    const check1 = () => true;
+    const check2 = () => true;
+    const check3 = () => false;
+    if (check1() && check2() && check3()) {
+      console.log('all of them are true');
+    } else {
+      console.log('there is at least one which is false');
+    }
   </script>
 </body>
 
