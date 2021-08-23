@@ -9,8 +9,137 @@
 </head>
 
 <body>
+  <input type="text" name="first" value="anna">
+  <script src="https://unpkg.com/lodash@4.17.15/lodash.js"></script>
   <script>
+    const age = 32;
+    const anna = {
+      name: 'anna',
+      age,
+      'cool-dude': true,
+      'really cool': false,
+      777: true,
+      clothing: {
+        shirt: 10,
+        pants: 2,
+      },
+      sayHello(greeting = 'Hey') {
+        return `${greeting} ${this.name}`;
+      },
+    };
 
+    // read
+    anna.clothing.pants;
+    anna['cool-dude'];
+    const jobs = anna.jobs ? anna.jobs.main : `jobs doesn't exist`;
+    console.log(jobs);
+    const greeting = anna.sayHello('Hello');
+    console.log(greeting);
+
+    // create
+    anna.age = 33;
+
+    // update
+    anna.address = 'potsdam';
+
+    // delete
+    delete anna['777'];
+
+    // freeze the content of the object
+    Object.freeze(anna);
+    anna.name = 'Anna Kokhan'; // value doesn't change, the object is frozen.
+    anna.age = 20; // value doesn't change, the object is frozen.
+    console.log(anna);
+
+    const nameInput = document.querySelector('[name="first"]');
+    // console.log(nameInput.value);
+    const input = nameInput ? nameInput.value : `input doesn't exist`;
+    console.log(input);
+
+    // OBJECT REFERENCE VS VALUES
+    // variables
+    let name1 = 'anna';
+    let name2 = 'anna';
+    console.log(name1 === name2); // => true
+    name1 = 'scott';
+    console.log(name1 === name2); // => false
+    name1 = name2;
+    console.log(name1 === name2); // => true
+    name2 = 'fran';
+    console.log(name1 === name2); // => false
+
+    // objects
+    const person1 = {
+      first: 'anna',
+      last: 'kokhan',
+      clothing: {
+        shirts: 10,
+        pants: 2,
+      },
+    };
+    const person2 = {
+      first: 'anna',
+      last: 'kokhan',
+      clothing: {
+        shirts: 10,
+        pants: 2,
+      },
+    };
+    console.log(person1 === person2); // => false // refers to the object itself, not the values
+    // const person3 = person1;
+    // console.log(person3); // => {first: "anna", last: "kokhan"}
+    // person3.first = 'Viktoria';
+    // console.log(person3.first); // => Viktoria
+    // console.log(person1.first); // => Viktoria
+    /* unlike would happen with variables, with objects (and arrays), person1 gets updated.
+    when objects and arrays are copied by reference (person3 = person1), you are not taking a copy of it.
+    you are simply creating a variable that references(points to) the original variable, i/o making a copy of it.
+    */
+
+    // make a copy instead of referencing => SPREAD OPERATOR
+    // const person3 = { ...person1 }; // assigning person3 to a new object and copy the person1.
+    // person3.first = 'viktoria';
+    // console.log(person3.first); // => viktoria // this time, only this value was updated
+    // console.log(person1.first); // => anna // this one remained like the original one
+
+    // going a second level deeper in the object => LODASH
+    // person3.clothing.shirts = 100;
+    // person1.clothing.shirts; // => 100 // person1 was updated with the value of person3.
+
+    // Deep Clone => LODASH Method
+    const person3 = _.cloneDeep(person1);
+    person3.first = 'viktoria';
+    person3.clothing.shirts = 100;
+    console.log(person1.clothing.shirts); // => 10 // person1 kepts its original value
+
+    // Merging objetcs withthe ... spread operator
+    const meatInventory = {
+      bacon: 2,
+      sausage: 3,
+    };
+    const veggieInventory = {
+      lettuce: 5,
+      tomatoes: 3,
+    };
+    const inventory = { ...meatInventory, ...veggieInventory }; // {bacon: 2, sausage: 3, lettuce: 5, tomatoes: 3}
+    inventory.oysters = 10; // {bacon: 2, sausage: 3, lettuce: 5, tomatoes: 3, oysters: 10}
+
+    // Funtions
+    const doStuff = (data) => {
+      data = 'something else';
+      console.log(data);
+    };
+    doStuff(name1); // it does not reference to the external variable (name1 = 'anna')
+
+    const dostuff2 = (data) => {
+      data.tomatoes = 100000000;
+      console.log(data);
+    };
+    dostuff2(inventory); // {bacon: 2, sausage: 3, lettuce: 5, tomatoes: 100000000, oysters: 10}
+    console.log(inventory); // {bacon: 2, sausage: 3, lettuce: 5, tomatoes: 100000000, oysters: 10}
+    // This means that if you pass in an object to a function, and you modify that object, the external object will also be updated.
+    inventory.tomatoes = 3;
+    console.log(inventory);
   </script>
 </body>
 
