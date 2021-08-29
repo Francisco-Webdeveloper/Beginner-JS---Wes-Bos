@@ -11,7 +11,82 @@
 </head>
 
 <body>
+  <script>
+    const names = ['anna', 'viktoria', 'valeria'];
+    console.log(names[0]); // anna
+    console.log(names.length); // 3
+    console.log(names[names.length - 1]); // last item => valeria
+    console.log(names.slice(-1)[0]); // last item => valeria
 
+    names.push('max');
+    console.log(names); // ["anna", "viktoria", "valeria", "max"]
+    const names2 = [...names, 'max']; // copy and update with an additional element;
+    names.unshift('fran'); // add an item to the beginning of the array
+    const names3 = ['loddy', ...names]; // immutable array // adding item to the beginning
+    console.log(names3);
+
+    // .slice
+    const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    console.log(numbers.slice(3, 6)); // [4, 5, 6]
+    console.log(numbers.slice(4, -2)); // [5, 6, 7]
+    console.log(numbers); // [1, 2, 3, 4, 5, 6, 7, 8, 9] => immutable
+
+    // add elements to the middle of an array with .slice
+    const bikes = ['bianchi', 'miele', 'panasonic', 'miyata'];
+    const newBikes = [...bikes.slice(0, 2), 'benotto', ...bikes.slice(2)];
+    console.log(newBikes); // ["bianchi", "miele", "benotto", "panasonic", "miyata"]
+    // remove item 'panasonic' from array
+    const newBikes2 = [...newBikes.slice(0, 3), ...newBikes.slice(4)];
+    console.log(newBikes2);
+
+    //
+    const comments = [
+      { text: 'Cool Beans', id: 123 },
+      { text: 'LOve this', id: 133 },
+      { text: 'Neato', id: 323 },
+      { text: 'Good bikes', id: 223 },
+      { text: 'so delicious', id: 433 },
+    ];
+
+    const deleteComment = (id) => {
+      // first find the index of the item in the array
+      const indexToDelete = comments.findIndex((comment) => comment.id === id);
+      // marke a new array without that item in it
+      const newComments = [
+        ...comments.slice(0, indexToDelete),
+        ...comments.slice(indexToDelete + 1),
+      ];
+      // return our new array
+      return newComments;
+    };
+    console.log(comments);
+    console.log(deleteComment(323));
+
+    // const index = comments.findIndex((comment) => comment.id === 223);
+    // const newComments = [...comments.slice(0, index), ...comments.slice(index + 1)];
+    // console.log(newComments);
+    // console.log(index); // => 3
+    // console.log(comments[index]); // => {text: "Good bikes", id: 223}
+
+    // .splice
+    console.log(numbers.splice(3, 2)); // [4, 5]
+    console.log(numbers); // [1, 2, 3, 6, 7, 8, 9] => mutable
+
+    // add elements to the middle of an array with .splice
+    const bikes2 = ['bianchi', 'miele', 'panasonic', 'miyata'];
+    bikes2.splice(2, 0, 'benottoo');
+    console.log(bikes2);
+
+    // // Mutation Method
+    // const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    // numbers.reverse();
+    // console.log(numbers); // the origin array has been changed / mutated
+    // const numbersReversed = numbers.reverse(); // made a copy of the origin array
+    // console.log(numbersReversed);
+    // // Immutable
+    // console.log(numbers.slice(3, 5));
+    // console.log(numbers); // original array hasn't changed
+  </script>
 </body>
 
 </html>

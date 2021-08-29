@@ -9,8 +9,61 @@
 </head>
 
 <body>
+  <ul class="prizes"></ul>
   <script>
+    const person1 = {
+      name: 'wes',
+      age: 200,
+    };
+    const myMap = new Map();
+    // set
+    myMap.set('name', 'anna');
+    myMap.set(100, 'This is a number');
+    myMap.age = 33; // it is a property on the map, not an entry
+    myMap.set(person1, 'Really cool');
+    console.log(myMap.get(person1));
 
+    const score = 300;
+    const prizes = new Map();
+    prizes.set(100, 'Bear');
+    prizes.set(200, 'Duck');
+    prizes.set(300, 'Cat');
+    console.log(`Your score is ${score}. You just won a ${prizes.get(score)}!!`);
+
+    const ul = document.querySelector('.prizes');
+    for (const prize of prizes) {
+      console.log(prize);
+      console.log(prize[0], prize[1]);
+      const li = `<li>${prize[0]} ~ ${prize[1]}</li>`;
+      ul.insertAdjacentHTML('beforeend', li);
+    }
+    // destructuring the array
+    for (const [points, prize] of prizes) {
+      console.log(points, prize);
+      const li = `<li>${points} ~ ${prize}</li>`;
+      ul.insertAdjacentHTML('beforeend', li);
+    }
+    // passing in items with an array of arrays
+    const wife = new Map([
+      ['name', 'anna'],
+      ['age', 33],
+    ]);
+    console.log(wife);
+
+    // has
+    // delete
+    myMap.delete('name');
+    console.log(myMap);
+
+    // JSON
+    const person = {
+      name: 'anna',
+      age: 33,
+    };
+    const json = JSON.stringify(person); // convert an object into a json (string)
+    console.log(json);
+    const object = JSON.parse(json); // turning back the json into an object
+    console.log(object);
   </script>
 </body>
 
