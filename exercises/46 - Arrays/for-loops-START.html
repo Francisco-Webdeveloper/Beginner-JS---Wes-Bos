@@ -12,15 +12,69 @@
   <script>
     const numbers = [2, 34, 3, 23, 42, 3, 1, 65, 364, 5, 645, 6];
 
-    const name = 'Wes Bos';
+    const name = 'Anna Kokhan';
 
-    // For
+    const anna = {
+      name: 'anna',
+      age: 33,
+      cool: true,
+    };
+
+    // For => runs a block of code 'n' number of times
+    // for (let i = 0; i <= 10; i += 1) {
+    //   console.log(i);
+    // }
+    // for (let i = 100; i <= 140; i += 4) {
+    //   console.log(i);
+    // }
+    for (let i = 0; i < numbers.length; i += 1) {
+      console.log(numbers[i]);
+    }
 
     // For of
+    for (const letter of name) {
+      console.log(letter);
+    }
+    for (const number of numbers) {
+      console.log(number);
+    }
 
-    // For in
+    // For in => used for looping over keys of an object
+    for (const prop in anna) {
+      console.log(prop);
+    }
 
-    // While Loop
+    const baseHumanStats = {
+      feet: 2,
+      arms: 2,
+      legs: 2,
+      head: 1,
+    };
+
+    function Human(name) {
+      this.name = name;
+    }
+
+    Human.prototype = baseHumanStats;
+
+    const anna2 = new Human('anna');
+
+    console.log(Object.entries(anna2));
+
+    for (const prop in anna2) {
+      console.log(prop);
+    }
+
+    // While Loop => it will run a condition until it is false
+    let cool = true;
+    let i = 1;
+    while (cool === true) {
+      console.log('you are cool');
+      i += 1;
+      if (i > 100) {
+        cool = false;
+      }
+    }
   </script>
 </body>
 
