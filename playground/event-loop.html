@@ -9,8 +9,70 @@
 </head>
 
 <body>
-  <script>
+  <style>
+    .go {
+      margin: 5rem;
+      background: white;
+      padding: 5rem;
+      width: 25rem;
+      height: 25rem;
+      transition: all 0.2s;
+    }
 
+    .circle {
+      border-radius: 50%;
+    }
+
+    .red {
+      background: red;
+      color: white;
+    }
+
+    .purple {
+      background: purple;
+      color: white;
+    }
+
+    .fadeOut {
+      opacity: 0;
+    }
+  </style>
+  <div class="go">Click Me</div>
+  <script>
+    // console.log('starting');
+    // setTimeout(function running() {
+    //   console.log('running');
+    // }, 2000);
+    // console.log('ending');
+
+    // CALLBACK HELL - callbacks are nested because they depend on each other
+    const go = document.querySelector('.go');
+    // 1. Change the text to GO when clicked.
+    go.addEventListener('click', (event) => {
+      const el = event.currentTarget;
+      el.innerText = 'GO';
+      // 1. Make it a circle after 2 secs
+      setTimeout(function () {
+        el.classList.add('circle');
+        // 1. Make it red after 0.5s
+        setTimeout(function () {
+          el.classList.add('red');
+          // 1. Make it square after 0.25s
+          setTimeout(function () {
+            el.classList.remove('circle');
+            // 1. Make it purple after 0.3s
+            setTimeout(function () {
+              el.classList.add('purple');
+              // 1. fade out after 0.5s
+              setTimeout(function () {
+                el.classList.add('fadeOut');
+              }, 500);
+            }, 300);
+          }, 250);
+        }, 500);
+      }, 2000);
+    });
+    // 1. Finish!
   </script>
 </body>
 
